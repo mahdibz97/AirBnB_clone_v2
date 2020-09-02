@@ -3,19 +3,20 @@
 
 from flask import Flask, render_template
 from models import *
+from models import storage
 app = Flask(__name__)
 
 
 @app.route('/states_list', strict_slashes=False)
 def states():
-    """states listed in alphabetical order"""
-    data = storage.all("State")
-    return render_template("7-states_list.html", data=data)
+    """display the states liste"""
+    states = sorted(list(storage.all("State").values()), key=lambda x: x.name)
+    return render_template('7-states_list.html', states=states)
 
 
 @app.teardown_appcontext
 def teardown(exception):
-    """teardown handling"""
+    """storage on teardown"""
     storage.close()
 
 
