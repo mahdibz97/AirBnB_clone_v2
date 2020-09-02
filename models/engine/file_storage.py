@@ -55,7 +55,7 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """method for deserializing the JSON file to objects"""
+        """deletes an object from the dict __objects if it's inside"""
         if obj:
             del self.__objects["{}.{}".format(obj.__class__.__name__, obj.id)]
             self.save()
