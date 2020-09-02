@@ -9,8 +9,8 @@ app = Flask(__name__)
 @app.route('/states_list', strict_slashes=False)
 def states():
     """states listed in alphabetical order"""
-    states = sorted(list(storage.all("State").values()), key=lambda x: x.name)
-    return render_template('7-states_list.html', states=states)
+    data = storage.all("State")
+    return render_template("7-states_list.html", data=data)
 
 
 @app.teardown_appcontext
