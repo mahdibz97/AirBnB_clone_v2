@@ -25,13 +25,13 @@ def cisfun(text):
 
 @app.route("/python/")
 @app.route("/python/<text>")
-def python_route(text="is cool"):
+def python_txt(text="is cool"):
     """display “Python ”, followed by the value of the text variable"""
     return 'Python ' + text.replace('_', ' ')
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def imanumber(n):
+def numb(n):
     """display “n is a number” only if n is an integer"""
     return "{:d} is a number".format(n)
 
