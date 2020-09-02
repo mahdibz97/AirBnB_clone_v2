@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """script that starts a Flask web application"""
 
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
 
 
@@ -23,9 +23,9 @@ def cisfun(text):
     return 'C ' + text.replace('_', ' ')
 
 
-@app.route("/python/")
-@app.route("/python/<text>")
-def python_route(text="is cool"):
+@app.route('/python', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
+def pythoniscool(text='is cool'):
     """display “Python ”, followed by the value of the text variable"""
     return 'Python ' + text.replace('_', ' ')
 
@@ -36,8 +36,8 @@ def imanumber(n):
     return "{:d} is a number".format(n)
 
 
-@app.route("/number_template/<int:n>")
-def displayPage_only_number(n):
+@app.route('/number_template/<int:n>', strict_slashes=False)
+def numbersandtemplates(n):
     """display a HTML page only if n is an integer"""
     return render_template('5-number.html', n=n)
 
